@@ -1,113 +1,267 @@
-import Image from 'next/image'
+"use client";
+import { Navbar } from "@/components/Navbar/Navbar";
+import { FilmSection } from "@/components/films/FilmSection";
+import { PeopleList } from "@/components/people/PeopleList";
+import { useGetData } from "@/hooks/useGetData";
+import Image from "next/image";
+import Link from "next/link";
+
+import React from "react";
 
 export default function Home() {
+  const { getData, data } = useGetData();
+
   return (
-    <main className="flex min-h-screen flex-col items-center justify-between p-24">
-      <div className="z-10 max-w-5xl w-full items-center justify-between font-mono text-sm lg:flex">
-        <p className="fixed left-0 top-0 flex w-full justify-center border-b border-gray-300 bg-gradient-to-b from-zinc-200 pb-6 pt-8 backdrop-blur-2xl dark:border-neutral-800 dark:bg-zinc-800/30 dark:from-inherit lg:static lg:w-auto  lg:rounded-xl lg:border lg:bg-gray-200 lg:p-4 lg:dark:bg-zinc-800/30">
-          Get started by editing&nbsp;
-          <code className="font-mono font-bold">src/app/page.tsx</code>
-        </p>
-        <div className="fixed bottom-0 left-0 flex h-48 w-full items-end justify-center bg-gradient-to-t from-white via-white dark:from-black dark:via-black lg:static lg:h-auto lg:w-auto lg:bg-none">
-          <a
-            className="pointer-events-none flex place-items-center gap-2 p-8 lg:pointer-events-auto lg:p-0"
-            href="https://vercel.com?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            By{' '}
-            <Image
-              src="/vercel.svg"
-              alt="Vercel Logo"
-              className="dark:invert"
-              width={100}
-              height={24}
-              priority
-            />
-          </a>
-        </div>
-      </div>
-
-      <div className="relative flex place-items-center before:absolute before:h-[300px] before:w-[480px] before:-translate-x-1/2 before:rounded-full before:bg-gradient-radial before:from-white before:to-transparent before:blur-2xl before:content-[''] after:absolute after:-z-20 after:h-[180px] after:w-[240px] after:translate-x-1/3 after:bg-gradient-conic after:from-sky-200 after:via-blue-200 after:blur-2xl after:content-[''] before:dark:bg-gradient-to-br before:dark:from-transparent before:dark:to-blue-700 before:dark:opacity-10 after:dark:from-sky-900 after:dark:via-[#0141ff] after:dark:opacity-40 before:lg:h-[360px] z-[-1]">
-        <Image
-          className="relative dark:drop-shadow-[0_0_0.3rem_#ffffff70] dark:invert"
-          src="/next.svg"
-          alt="Next.js Logo"
-          width={180}
-          height={37}
-          priority
-        />
-      </div>
-
-      <div className="mb-32 grid text-center lg:max-w-5xl lg:w-full lg:mb-0 lg:grid-cols-4 lg:text-left">
-        <a
-          href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={`mb-3 text-2xl font-semibold`}>
-            Docs{' '}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
-            Find in-depth information about Next.js features and API.
-          </p>
-        </a>
-
-        <a
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={`mb-3 text-2xl font-semibold`}>
-            Learn{' '}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
-            Learn about Next.js in an interactive course with&nbsp;quizzes!
-          </p>
-        </a>
-
-        <a
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={`mb-3 text-2xl font-semibold`}>
-            Templates{' '}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
-            Explore the Next.js 13 playground.
-          </p>
-        </a>
-
-        <a
-          href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={`mb-3 text-2xl font-semibold`}>
-            Deploy{' '}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
-            Instantly deploy your Next.js site to a shareable URL with Vercel.
-          </p>
-        </a>
-      </div>
-    </main>
-  )
+    <div className="flex">
+      <Navbar />
+      <main className="flex min-h-screen flex-col items-center p-8">
+        <FilmSection />
+        <PeopleList peopleList={people.results} />
+      </main>
+    </div>
+  );
 }
+
+const people = {
+  count: 82,
+  next: "https://swapi.dev/api/people/?page=2",
+  previous: null,
+  results: [
+    {
+      name: "Luke Skywalker",
+      height: "172",
+      mass: "77",
+      hair_color: "blond",
+      skin_color: "fair",
+      eye_color: "blue",
+      birth_year: "19BBY",
+      gender: "male",
+      homeworld: "https://swapi.dev/api/planets/1/",
+      films: [
+        "https://swapi.dev/api/films/1/",
+        "https://swapi.dev/api/films/2/",
+        "https://swapi.dev/api/films/3/",
+        "https://swapi.dev/api/films/6/",
+      ],
+      species: [],
+      vehicles: [
+        "https://swapi.dev/api/vehicles/14/",
+        "https://swapi.dev/api/vehicles/30/",
+      ],
+      starships: [
+        "https://swapi.dev/api/starships/12/",
+        "https://swapi.dev/api/starships/22/",
+      ],
+      created: "2014-12-09T13:50:51.644000Z",
+      edited: "2014-12-20T21:17:56.891000Z",
+      url: "https://swapi.dev/api/people/1/",
+    },
+    {
+      name: "C-3PO",
+      height: "167",
+      mass: "75",
+      hair_color: "n/a",
+      skin_color: "gold",
+      eye_color: "yellow",
+      birth_year: "112BBY",
+      gender: "n/a",
+      homeworld: "https://swapi.dev/api/planets/1/",
+      films: [
+        "https://swapi.dev/api/films/1/",
+        "https://swapi.dev/api/films/2/",
+        "https://swapi.dev/api/films/3/",
+        "https://swapi.dev/api/films/4/",
+        "https://swapi.dev/api/films/5/",
+        "https://swapi.dev/api/films/6/",
+      ],
+      species: ["https://swapi.dev/api/species/2/"],
+      vehicles: [],
+      starships: [],
+      created: "2014-12-10T15:10:51.357000Z",
+      edited: "2014-12-20T21:17:50.309000Z",
+      url: "https://swapi.dev/api/people/2/",
+    },
+    {
+      name: "R2-D2",
+      height: "96",
+      mass: "32",
+      hair_color: "n/a",
+      skin_color: "white, blue",
+      eye_color: "red",
+      birth_year: "33BBY",
+      gender: "n/a",
+      homeworld: "https://swapi.dev/api/planets/8/",
+      films: [
+        "https://swapi.dev/api/films/1/",
+        "https://swapi.dev/api/films/2/",
+        "https://swapi.dev/api/films/3/",
+        "https://swapi.dev/api/films/4/",
+        "https://swapi.dev/api/films/5/",
+        "https://swapi.dev/api/films/6/",
+      ],
+      species: ["https://swapi.dev/api/species/2/"],
+      vehicles: [],
+      starships: [],
+      created: "2014-12-10T15:11:50.376000Z",
+      edited: "2014-12-20T21:17:50.311000Z",
+      url: "https://swapi.dev/api/people/3/",
+    },
+    {
+      name: "Darth Vader",
+      height: "202",
+      mass: "136",
+      hair_color: "none",
+      skin_color: "white",
+      eye_color: "yellow",
+      birth_year: "41.9BBY",
+      gender: "male",
+      homeworld: "https://swapi.dev/api/planets/1/",
+      films: [
+        "https://swapi.dev/api/films/1/",
+        "https://swapi.dev/api/films/2/",
+        "https://swapi.dev/api/films/3/",
+        "https://swapi.dev/api/films/6/",
+      ],
+      species: [],
+      vehicles: [],
+      starships: ["https://swapi.dev/api/starships/13/"],
+      created: "2014-12-10T15:18:20.704000Z",
+      edited: "2014-12-20T21:17:50.313000Z",
+      url: "https://swapi.dev/api/people/4/",
+    },
+    {
+      name: "Leia Organa",
+      height: "150",
+      mass: "49",
+      hair_color: "brown",
+      skin_color: "light",
+      eye_color: "brown",
+      birth_year: "19BBY",
+      gender: "female",
+      homeworld: "https://swapi.dev/api/planets/2/",
+      films: [
+        "https://swapi.dev/api/films/1/",
+        "https://swapi.dev/api/films/2/",
+        "https://swapi.dev/api/films/3/",
+        "https://swapi.dev/api/films/6/",
+      ],
+      species: [],
+      vehicles: ["https://swapi.dev/api/vehicles/30/"],
+      starships: [],
+      created: "2014-12-10T15:20:09.791000Z",
+      edited: "2014-12-20T21:17:50.315000Z",
+      url: "https://swapi.dev/api/people/5/",
+    },
+    {
+      name: "Owen Lars",
+      height: "178",
+      mass: "120",
+      hair_color: "brown, grey",
+      skin_color: "light",
+      eye_color: "blue",
+      birth_year: "52BBY",
+      gender: "male",
+      homeworld: "https://swapi.dev/api/planets/1/",
+      films: [
+        "https://swapi.dev/api/films/1/",
+        "https://swapi.dev/api/films/5/",
+        "https://swapi.dev/api/films/6/",
+      ],
+      species: [],
+      vehicles: [],
+      starships: [],
+      created: "2014-12-10T15:52:14.024000Z",
+      edited: "2014-12-20T21:17:50.317000Z",
+      url: "https://swapi.dev/api/people/6/",
+    },
+    {
+      name: "Beru Whitesun lars",
+      height: "165",
+      mass: "75",
+      hair_color: "brown",
+      skin_color: "light",
+      eye_color: "blue",
+      birth_year: "47BBY",
+      gender: "female",
+      homeworld: "https://swapi.dev/api/planets/1/",
+      films: [
+        "https://swapi.dev/api/films/1/",
+        "https://swapi.dev/api/films/5/",
+        "https://swapi.dev/api/films/6/",
+      ],
+      species: [],
+      vehicles: [],
+      starships: [],
+      created: "2014-12-10T15:53:41.121000Z",
+      edited: "2014-12-20T21:17:50.319000Z",
+      url: "https://swapi.dev/api/people/7/",
+    },
+    {
+      name: "R5-D4",
+      height: "97",
+      mass: "32",
+      hair_color: "n/a",
+      skin_color: "white, red",
+      eye_color: "red",
+      birth_year: "unknown",
+      gender: "n/a",
+      homeworld: "https://swapi.dev/api/planets/1/",
+      films: ["https://swapi.dev/api/films/1/"],
+      species: ["https://swapi.dev/api/species/2/"],
+      vehicles: [],
+      starships: [],
+      created: "2014-12-10T15:57:50.959000Z",
+      edited: "2014-12-20T21:17:50.321000Z",
+      url: "https://swapi.dev/api/people/8/",
+    },
+    {
+      name: "Biggs Darklighter",
+      height: "183",
+      mass: "84",
+      hair_color: "black",
+      skin_color: "light",
+      eye_color: "brown",
+      birth_year: "24BBY",
+      gender: "male",
+      homeworld: "https://swapi.dev/api/planets/1/",
+      films: ["https://swapi.dev/api/films/1/"],
+      species: [],
+      vehicles: [],
+      starships: ["https://swapi.dev/api/starships/12/"],
+      created: "2014-12-10T15:59:50.509000Z",
+      edited: "2014-12-20T21:17:50.323000Z",
+      url: "https://swapi.dev/api/people/9/",
+    },
+    {
+      name: "Obi-Wan Kenobi",
+      height: "182",
+      mass: "77",
+      hair_color: "auburn, white",
+      skin_color: "fair",
+      eye_color: "blue-gray",
+      birth_year: "57BBY",
+      gender: "male",
+      homeworld: "https://swapi.dev/api/planets/20/",
+      films: [
+        "https://swapi.dev/api/films/1/",
+        "https://swapi.dev/api/films/2/",
+        "https://swapi.dev/api/films/3/",
+        "https://swapi.dev/api/films/4/",
+        "https://swapi.dev/api/films/5/",
+        "https://swapi.dev/api/films/6/",
+      ],
+      species: [],
+      vehicles: ["https://swapi.dev/api/vehicles/38/"],
+      starships: [
+        "https://swapi.dev/api/starships/48/",
+        "https://swapi.dev/api/starships/59/",
+        "https://swapi.dev/api/starships/64/",
+        "https://swapi.dev/api/starships/65/",
+        "https://swapi.dev/api/starships/74/",
+      ],
+      created: "2014-12-10T16:16:29.192000Z",
+      edited: "2014-12-20T21:17:50.325000Z",
+      url: "https://swapi.dev/api/people/10/",
+    },
+  ],
+};
