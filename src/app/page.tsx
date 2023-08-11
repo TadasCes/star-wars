@@ -2,23 +2,37 @@
 import { Navbar } from "@/components/Navbar/Navbar";
 import { FilmSection } from "@/components/films/FilmSection";
 import { PeopleList } from "@/components/people/PeopleList";
+import { LoadSpinner } from "@/components/utils/LoadSpinner";
 import { useGetData } from "@/hooks/useGetData";
 import Image from "next/image";
 import Link from "next/link";
 
-import React from "react";
+import React, { useState } from "react";
+import { TailSpin } from "react-loader-spinner";
+import { useFilmsData } from "./data/FilmsDataProvider";
 
 export default function Home() {
+  const [loading, setLoading] = useState(false);
   const { getData, data } = useGetData();
+  const filmsData = useFilmsData();
 
   return (
-    <div className="flex">
-      <Navbar />
-      <main className="flex min-h-screen flex-col items-center p-8">
-        <FilmSection />
-        <PeopleList peopleList={people.results} />
-      </main>
-    </div>
+    <>
+      <div className="flex">
+        <Navbar />
+        <main className="flex min-h-screen flex-col items-center p-8">
+          {loading ? (
+            // <LoadSpinner />
+            <div></div>
+          ) : (
+            <>
+              <FilmSection films={filmsData} />
+              <PeopleList />
+            </>
+          )}
+        </main>
+      </div>
+    </>
   );
 }
 

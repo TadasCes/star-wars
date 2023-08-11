@@ -1,6 +1,9 @@
+"use client";
+import { FilmsDataProvider } from "@/app/data/FilmsDataProvider";
 import "./globals.css";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
+import { PeopleDataProvider } from "./data/PeoplDataProvider";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -15,13 +18,17 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en">
-      <body
-        suppressHydrationWarning={true}
-        className={inter.className + " p-8"}
-      >
-        {children}
-      </body>
-    </html>
+    <FilmsDataProvider>
+      <PeopleDataProvider>
+        <html lang="en">
+          <body
+            suppressHydrationWarning={true}
+            className={inter.className + " p-8 "}
+          >
+            {children}
+          </body>
+        </html>
+      </PeopleDataProvider>
+    </FilmsDataProvider>
   );
 }

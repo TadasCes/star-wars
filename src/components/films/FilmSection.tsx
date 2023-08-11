@@ -1,17 +1,18 @@
 import React from "react";
 import { FilmCard } from "./FilmCard";
-import { IFilm } from "./IFilm";
-
+import { IFilm } from "../../app/interfaces/IFilm";
+import { useFilmsData } from "@/app/data/FilmsDataProvider";
+import { useEffect } from "react";
 interface FilmSectionProps {
-  filmData: IFilm[];
+  films: IFilm[] | null;
 }
 
-export const FilmSection = () => {
+export const FilmSection = ({ films }: FilmSectionProps) => {
+  console.log(films);
   return (
     <div className="w-full h-fit mb-8 grid grid-rows-1 grid-cols-3">
-      {films.map((film) => (
-        <FilmCard key={film.episode_id} film={film} />
-      ))}
+      {films != null &&
+        films.map((film) => <FilmCard key={film.episode_id} film={film} />)}
     </div>
   );
 };
