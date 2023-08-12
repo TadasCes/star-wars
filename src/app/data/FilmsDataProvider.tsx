@@ -6,23 +6,29 @@ type FilmContextType = {
   films: IFilm[];
 };
 
-const Context = createContext<IFilm[] | null>(null);
+const Context = createContext<any>(null);
 
 export const FilmsDataProvider = ({ children }: any) => {
-  const [filmsData, setFilmsData] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const [filmsData, setFilmsData] = useState<IFilm[]>([]);
 
   useEffect(() => {
     const fetchData = async () => {
       await axios
         .get("https://swapi.dev/api/films/")
         .then((response) => response.data.results)
-        .then((data) => setFilmsData(data));
+        .then((data) => setFilmsData(data))
+        .then(() => setLoading(false));
     };
 
     fetchData();
   }, []);
 
-  return <Context.Provider value={filmsData}>{children}</Context.Provider>;
+  return (
+    <Context.Provider value={{ filmsData, loading }}>
+      {children}
+    </Context.Provider>
+  );
 };
 
 export const useFilmsData = () => useContext(Context);

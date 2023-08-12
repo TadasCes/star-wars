@@ -4,6 +4,7 @@ import "./globals.css";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import { PeopleDataProvider } from "./data/PeoplDataProvider";
+import { Nav } from "@/components/Nav/Nav";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -21,11 +22,11 @@ export default function RootLayout({
     <FilmsDataProvider>
       <PeopleDataProvider>
         <html lang="en">
-          <body
-            suppressHydrationWarning={true}
-            className={inter.className + " p-8 "}
-          >
-            {children}
+          <body suppressHydrationWarning={true} className={inter.className}>
+            <div className="flex">
+              <Nav />
+              {children}
+            </div>
           </body>
         </html>
       </PeopleDataProvider>
