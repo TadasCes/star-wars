@@ -1,19 +1,21 @@
 import React from "react";
 import { IPerson } from "../../app/interfaces/IPerson";
+import { TableCell } from "../table/TableCell";
+import { TableRow } from "../table/TableRow";
 
 interface PersonRowProps {
   id: number;
   person: IPerson;
 }
 
-export const PersonRow: React.FC<PersonRowProps> = ({ id, person }) => {
+export const PersonRow = ({ id, person }: PersonRowProps) => {
   return (
-    <div className="grid grid-cols-7 text-black">
-      <div className="">{id}</div>
-      <div className="col-span-3">{person.name}</div>
-      <div className="">{person.birth_year}</div>
-      <div className="">{person.gender}</div>
-      <div className="">{person.mass}</div>
-    </div>
+    <TableRow>
+      <TableCell>{id}</TableCell>
+      <TableCell>{person.name}</TableCell>
+      <TableCell>{person.gender}</TableCell>
+      <TableCell>{person.birth_year}</TableCell>
+      <TableCell>{person.mass}</TableCell>
+    </TableRow>
   );
 };

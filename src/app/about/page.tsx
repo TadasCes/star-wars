@@ -1,9 +1,7 @@
-import Link from "next/link";
-
 export default function About() {
   return (
     <main className="flex w-full min-h-screen flex-col items-center md:p-8">
-      <p className="  ">About</p>
+      <p className="">About</p>
       <p>
         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam hendrerit
         faucibus ligula vitae sodales. Maecenas cursus ornare felis sit amet

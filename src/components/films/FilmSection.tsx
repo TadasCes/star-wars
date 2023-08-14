@@ -1,17 +1,10 @@
-import React, { useState } from "react";
 import { FilmCard } from "./FilmCard";
 import { IFilm } from "../../app/interfaces/IFilm";
 import { useFilmsData } from "@/app/data/FilmsDataProvider";
-import { useEffect } from "react";
-import { useGetData } from "@/hooks/useGetData";
 import { LoadSpinner } from "../utils/LoadSpinner";
-interface FilmSectionProps {
-  films: IFilm[] | null;
-}
 
 export const FilmSection = () => {
   const { filmsData, loading } = useFilmsData();
-  console.log(filmsData);
 
   return loading ? (
     <div className="w-full">

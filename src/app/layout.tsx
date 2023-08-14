@@ -23,9 +23,11 @@ export default function RootLayout({
       <PeopleDataProvider>
         <html lang="en">
           <body suppressHydrationWarning={true} className={inter.className}>
-            <div className="flex">
+            <div className="grid grid-cols-6 auto-rows-max">
               <Nav />
-              {children}
+              <div className="col-span-6 md:col-span-5 row-span-1">
+                {children}
+              </div>
             </div>
           </body>
         </html>

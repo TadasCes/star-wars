@@ -2,10 +2,6 @@ import axios from "axios";
 import { createContext, useContext, useEffect, useState } from "react";
 import { IFilm } from "../interfaces/IFilm";
 
-type FilmContextType = {
-  films: IFilm[];
-};
-
 const Context = createContext<any>(null);
 
 export const FilmsDataProvider = ({ children }: any) => {
