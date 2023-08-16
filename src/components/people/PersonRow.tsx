@@ -1,4 +1,3 @@
-import React from "react";
 import { IPerson } from "../../app/interfaces/IPerson";
 import { TableCell } from "../table/TableCell";
 import { TableRow } from "../table/TableRow";

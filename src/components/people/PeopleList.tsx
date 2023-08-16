@@ -1,23 +1,22 @@
-import React from "react";
 import { IPerson } from "../../app/interfaces/IPerson";
 import { PersonRow } from "./PersonRow";
-import { usePeopleData } from "@/app/data/PeoplDataProvider";
 import { LoadSpinner } from "../utils/LoadSpinner";
 import { Table } from "../table/Table";
 import { TableRow } from "../table/TableRow";
 import { TableHeader } from "../table/TableHeader";
 import { TableHeaderCell } from "../table/TableHeaderCell";
 import { TableBody } from "../table/TableBody";
+import { usePeople } from "./hooks/usePeople";
 
 export const PeopleList = () => {
-  const { peopleList, loading, isRequested } = usePeopleData();
+  const { peopleList, loading, isRequested } = usePeople();
 
   return isRequested ? (
     loading ? (
       <div className="w-full">
         <LoadSpinner />
       </div>
-    ) : (
+    ) : peopleList ? (
       <div className="p-2 w-full">
         <Table>
           <TableHeader>
@@ -35,6 +34,10 @@ export const PeopleList = () => {
             ))}
           </TableBody>
         </Table>
+      </div>
+    ) : (
+      <div>
+        <p>Error loading data, please try again later.</p>
       </div>
     )
   ) : null;

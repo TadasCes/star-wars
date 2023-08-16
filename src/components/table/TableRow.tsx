@@ -1,5 +1,3 @@
-import React, { Children } from "react";
-
 type TableRowProps = {
   children: JSX.Element | JSX.Element[];
   background?: boolean;

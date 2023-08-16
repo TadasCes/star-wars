@@ -1,5 +1,3 @@
-import React from "react";
-
 type FilmCardInfoProps = {
   children: JSX.Element | JSX.Element[] | string | string[];
 };

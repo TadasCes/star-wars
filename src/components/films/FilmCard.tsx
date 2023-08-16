@@ -1,18 +1,17 @@
-import React from "react";
 import { IFilm } from "../../app/interfaces/IFilm";
-import { usePeople } from "@/hooks/usePeople";
 import { FilmCardBody } from "../filmCard/FilmCardBody";
 import { FilmCardHeader } from "../filmCard/FilmCardHeader";
 import { FilmCardInfo } from "../filmCard/FilmCardInfo";
 import { FilmCardAction } from "../filmCard/FilmCardAction";
 import { ActionButton } from "../buttons/ActionButton";
+import { useFilms } from "./hooks/useFilms";
 
 interface FilmCardProps {
   film: IFilm;
 }
 
 export const FilmCard: React.FC<FilmCardProps> = ({ film }) => {
-  const { getPeopleList } = usePeople();
+  const { handleFetchPeople } = useFilms();
 
   return (
     <FilmCardBody>
@@ -23,7 +22,7 @@ export const FilmCard: React.FC<FilmCardProps> = ({ film }) => {
       <FilmCardAction>
         <ActionButton
           title="Show people"
-          onClick={() => getPeopleList(film.characters)}
+          onClick={() => handleFetchPeople(film.characters)}
         />
       </FilmCardAction>
     </FilmCardBody>

@@ -1,5 +1,3 @@
-import React from "react";
-
 type TableBodyProps = {
   children: JSX.Element | JSX.Element[];
 };
